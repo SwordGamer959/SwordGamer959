@@ -1,6 +1,7 @@
 /* =========================================================
    SWORDGAMER959
    FUTURISTIC GAMING WEBSITE
+   DESKTOP + TABLET + MOBILE
 ========================================================= */
 
 :root {
@@ -16,8 +17,7 @@
     --white: #f5f7fa;
     --gray: #8d96a5;
 
-    --glass: rgba(8, 12, 20, 0.72);
-    --border: rgba(77, 217, 255, 0.22);
+    --glass: rgba(8, 12, 20, 0.78);
 
     --font-main: "Rajdhani", sans-serif;
     --font-tech: "Orbitron", sans-serif;
@@ -36,12 +36,19 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
+    min-height: 100vh;
+
     background: var(--black);
     color: var(--white);
+
     font-family: var(--font-main);
+
     overflow-x: hidden;
 }
 
@@ -63,6 +70,7 @@ img {
 #loader {
     position: fixed;
     inset: 0;
+
     z-index: 99999;
 
     display: flex;
@@ -93,15 +101,14 @@ img {
 }
 
 .loader-ring {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 
-    margin: auto auto 35px;
+    margin: 0 auto 30px;
 
     border-radius: 50%;
 
-    border:
-        2px solid rgba(77, 217, 255, 0.15);
+    border: 2px solid rgba(77, 217, 255, 0.15);
 
     border-top-color: var(--ice);
     border-right-color: var(--red);
@@ -115,8 +122,11 @@ img {
 
 .loader-text {
     font-family: var(--font-tech);
-    font-size: 22px;
-    letter-spacing: 4px;
+
+    font-size: 20px;
+
+    letter-spacing: 3px;
+
     font-weight: 800;
 }
 
@@ -126,37 +136,49 @@ img {
 
 .loader-status {
     margin-top: 12px;
+
     color: var(--gray);
-    font-size: 12px;
-    letter-spacing: 3px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
 }
 
 .loader-progress {
+    width: 100%;
     height: 3px;
+
+    margin-top: 28px;
+
     background: rgba(255,255,255,0.08);
-    margin-top: 30px;
 }
 
 #loaderBar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        var(--red),
-        var(--ice)
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--red),
+            var(--ice)
+        );
 
     box-shadow:
         0 0 15px var(--ice);
 
-    transition: width 0.1s linear;
+    transition:
+        width 0.1s linear;
 }
 
 #loaderPercent {
     margin-top: 10px;
+
     color: var(--ice);
+
     font-family: var(--font-tech);
-    font-size: 12px;
+
+    font-size: 10px;
 }
 
 
@@ -167,23 +189,27 @@ img {
 .background-layer {
     position: fixed;
     inset: 0;
+
     z-index: -5;
 
     background:
         linear-gradient(
             rgba(3,3,5,0.55),
-            rgba(3,3,5,0.88)
+            rgba(3,3,5,0.90)
         ),
         url("images/background.jpg")
         center / cover no-repeat;
 
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 .background-overlay {
     position: fixed;
     inset: 0;
+
     z-index: -4;
+
+    pointer-events: none;
 
     background:
         radial-gradient(
@@ -201,9 +227,12 @@ img {
 .grid-layer {
     position: fixed;
     inset: 0;
+
     z-index: -3;
 
-    opacity: 0.08;
+    opacity: 0.07;
+
+    pointer-events: none;
 
     background-image:
         linear-gradient(
@@ -217,15 +246,6 @@ img {
         );
 
     background-size: 55px 55px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            black 20%,
-            black 80%,
-            transparent
-        );
 }
 
 
@@ -236,9 +256,11 @@ img {
 .particles {
     position: fixed;
     inset: 0;
+
     z-index: -2;
 
     pointer-events: none;
+
     overflow: hidden;
 }
 
@@ -282,7 +304,7 @@ img {
     padding: 0 25px;
 
     background:
-        rgba(2,3,6,0.92);
+        rgba(2,3,6,0.94);
 
     border-bottom:
         1px solid rgba(77,217,255,0.1);
@@ -290,6 +312,7 @@ img {
     color: var(--gray);
 
     font-family: var(--font-tech);
+
     font-size: 9px;
 
     letter-spacing: 2px;
@@ -334,9 +357,11 @@ img {
     padding: 0 6vw;
 
     background:
-        rgba(3,3,5,0.65);
+        rgba(3,3,5,0.72);
 
     backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
 
     border-bottom:
         1px solid rgba(77,217,255,0.12);
@@ -344,9 +369,14 @@ img {
 
 .logo {
     font-family: var(--font-tech);
+
     font-size: 18px;
+
     font-weight: 800;
+
     letter-spacing: 2px;
+
+    white-space: nowrap;
 }
 
 .logo span:not(.logo-bracket) {
@@ -359,6 +389,9 @@ img {
 
 nav {
     display: flex;
+
+    align-items: center;
+
     gap: 30px;
 }
 
@@ -368,6 +401,7 @@ nav {
     color: #9ba5b5;
 
     font-family: var(--font-tech);
+
     font-size: 10px;
 
     letter-spacing: 2px;
@@ -411,20 +445,34 @@ nav {
 .menu-button {
     display: none;
 
-    background: none;
-    border: none;
+    width: 42px;
+    height: 42px;
 
-    width: 35px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 5px;
+
+    background:
+        rgba(77,217,255,0.05);
+
+    border:
+        1px solid rgba(77,217,255,0.3);
+
+    cursor: pointer;
 }
 
 .menu-button span {
     display: block;
 
+    width: 20px;
     height: 2px;
 
-    margin: 6px 0;
-
     background: var(--ice);
+
+    transition:
+        0.3s ease;
 }
 
 
@@ -434,6 +482,8 @@ nav {
 
 main {
     position: relative;
+
+    width: 100%;
 }
 
 .section {
@@ -443,19 +493,22 @@ main {
 
     margin: auto;
 
-    padding:
-        130px 0;
+    padding: 130px 0;
 }
 
 .section-heading {
     display: flex;
+
     align-items: flex-start;
+
     gap: 25px;
 
     margin-bottom: 60px;
 }
 
 .section-number {
+    flex-shrink: 0;
+
     color: var(--red);
 
     font-family: var(--font-tech);
@@ -502,6 +555,8 @@ main {
 .hero {
     min-height: 100vh;
 
+    min-height: 100svh;
+
     display: grid;
 
     grid-template-columns:
@@ -515,9 +570,15 @@ main {
     padding-top: 150px;
 }
 
+.hero-content {
+    min-width: 0;
+}
+
 .hero-tag {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     color: var(--ice);
@@ -530,6 +591,8 @@ main {
 }
 
 .hero-tag span {
+    flex-shrink: 0;
+
     width: 8px;
     height: 8px;
 
@@ -540,7 +603,8 @@ main {
     box-shadow:
         0 0 15px var(--red);
 
-    animation: pulse 1.5s infinite;
+    animation:
+        pulse 1.5s infinite;
 }
 
 .hero h1 {
@@ -555,6 +619,8 @@ main {
     letter-spacing: -5px;
 
     color: var(--white);
+
+    overflow-wrap: anywhere;
 }
 
 .hero h1 strong {
@@ -592,14 +658,16 @@ main {
 
 
 /* =========================================================
-   CYBER BUTTON
+   BUTTONS
 ========================================================= */
 
 .cyber-button {
     position: relative;
 
     display: flex;
+
     align-items: center;
+
     gap: 20px;
 
     min-width: 180px;
@@ -632,6 +700,8 @@ main {
 
     transition:
         0.3s ease;
+
+    cursor: pointer;
 }
 
 .cyber-button b {
@@ -641,7 +711,8 @@ main {
 }
 
 .cyber-button:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 
     background:
         rgba(77,217,255,0.12);
@@ -651,7 +722,8 @@ main {
 }
 
 .cyber-button.primary {
-    border-color: rgba(255,23,68,0.55);
+    border-color:
+        rgba(255,23,68,0.55);
 
     background:
         linear-gradient(
@@ -680,6 +752,7 @@ main {
 
 .hero-stats div {
     display: flex;
+
     flex-direction: column;
 }
 
@@ -714,14 +787,19 @@ main {
     min-height: 600px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
+    min-width: 0;
 }
 
 .profile-frame {
     position: relative;
 
     width: min(390px, 75vw);
+
     height: min(480px, 80vw);
 
     overflow: hidden;
@@ -748,25 +826,6 @@ main {
         0 0 100px rgba(255,23,68,0.1);
 }
 
-.profile-frame::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    z-index: 2;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(77,217,255,0.05),
-            transparent
-        );
-
-    pointer-events: none;
-}
-
 .profile-frame img {
     width: 100%;
     height: 100%;
@@ -783,31 +842,42 @@ main {
     z-index: 3;
 
     border-color: var(--ice);
+
     border-style: solid;
+
+    pointer-events: none;
 }
 
 .top-left {
     top: 15px;
     left: 15px;
-    border-width: 2px 0 0 2px;
+
+    border-width:
+        2px 0 0 2px;
 }
 
 .top-right {
     top: 15px;
     right: 15px;
-    border-width: 2px 2px 0 0;
+
+    border-width:
+        2px 2px 0 0;
 }
 
 .bottom-left {
     bottom: 15px;
     left: 15px;
-    border-width: 0 0 2px 2px;
+
+    border-width:
+        0 0 2px 2px;
 }
 
 .bottom-right {
     bottom: 15px;
     right: 15px;
-    border-width: 0 2px 2px 0;
+
+    border-width:
+        0 2px 2px 0;
 }
 
 
@@ -832,7 +902,8 @@ main {
 
     transform: rotate(55deg);
 
-    animation: orbitSpin 10s linear infinite;
+    animation:
+        orbitSpin 10s linear infinite;
 }
 
 .orbit-two {
@@ -916,6 +987,8 @@ main {
 .glass-card {
     position: relative;
 
+    min-width: 0;
+
     padding: 35px;
 
     background:
@@ -940,31 +1013,9 @@ main {
     overflow: hidden;
 }
 
-.glass-card::after {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-
-    width: 100%;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--ice),
-            transparent
-        );
-
-    animation:
-        cardScan 5s linear infinite;
-}
-
 .card-top {
     display: flex;
+
     justify-content: space-between;
 
     margin-bottom: 35px;
@@ -1015,6 +1066,7 @@ main {
 
 .skill div:first-child {
     display: flex;
+
     justify-content: space-between;
 
     color: #cbd1dc;
@@ -1075,6 +1127,8 @@ main {
 
 .game-card {
     position: relative;
+
+    min-width: 0;
 
     overflow: hidden;
 
@@ -1203,6 +1257,7 @@ main {
 
 .game-footer {
     display: flex;
+
     justify-content: space-between;
 
     margin-top: 25px;
@@ -1235,6 +1290,7 @@ main {
     position: relative;
 
     display: flex;
+
     align-items: center;
 
     gap: 25px;
@@ -1253,11 +1309,15 @@ main {
 }
 
 .future-icon {
+    flex-shrink: 0;
+
     width: 55px;
     height: 55px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border:
@@ -1294,27 +1354,6 @@ main {
     margin-left: 8px;
 }
 
-.future-scan {
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-
-    width: 100%;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--red),
-            transparent
-        );
-
-    animation:
-        cardScan 4s linear infinite;
-}
-
 
 /* =========================================================
    YOUTUBE
@@ -1324,7 +1363,9 @@ main {
     position: relative;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     min-height: 330px;
@@ -1365,12 +1406,18 @@ main {
     letter-spacing: 3px;
 }
 
+.youtube-content {
+    min-width: 0;
+}
+
 .youtube-content h3 {
     margin-top: 20px;
 
     font-family: var(--font-tech);
 
     font-size: clamp(35px, 6vw, 75px);
+
+    overflow-wrap: anywhere;
 }
 
 .youtube-content h3 span {
@@ -1390,6 +1437,8 @@ main {
 }
 
 .youtube-symbol {
+    flex-shrink: 0;
+
     font-size: 170px;
 
     color: rgba(255,23,68,0.13);
@@ -1413,9 +1462,12 @@ main {
 
 .social-card {
     display: flex;
+
     align-items: center;
 
     gap: 20px;
+
+    min-width: 0;
 
     padding: 25px;
 
@@ -1438,11 +1490,15 @@ main {
 }
 
 .social-icon {
+    flex-shrink: 0;
+
     width: 55px;
     height: 55px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border:
@@ -1455,6 +1511,8 @@ main {
 
 .social-card div:nth-child(2) {
     flex: 1;
+
+    min-width: 0;
 }
 
 .social-card span {
@@ -1476,6 +1534,8 @@ main {
 }
 
 .social-card > b {
+    flex-shrink: 0;
+
     color: var(--ice);
 }
 
@@ -1507,7 +1567,10 @@ footer {
 
 .footer-content {
     display: flex;
+
     justify-content: space-between;
+
+    gap: 20px;
 
     margin-top: 20px;
 
@@ -1546,63 +1609,70 @@ footer {
 
 @keyframes orbitSpin {
     from {
-        transform:
-            rotate(0deg);
+        transform: rotate(0deg);
     }
 
     to {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
 @keyframes orbitSpinReverse {
     from {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 
     to {
-        transform:
-            rotate(0deg);
-    }
-}
-
-@keyframes cardScan {
-    from {
-        left: -100%;
-    }
-
-    to {
-        left: 100%;
+        transform: rotate(0deg);
     }
 }
 
 @keyframes particleFloat {
     from {
-        transform:
-            translateY(110vh);
+        transform: translateY(110vh);
     }
 
     to {
-        transform:
-            translateY(-20vh);
+        transform: translateY(-20vh);
     }
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   TABLET
 ========================================================= */
 
 @media (max-width: 950px) {
 
     .hero {
         grid-template-columns: 1fr;
+
+        padding-top: 150px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-tag {
+        justify-content: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
     }
 
     .hero-visual {
-        min-height: 500px;
+        min-height: 520px;
     }
 
     .about-grid {
@@ -1610,7 +1680,8 @@ footer {
     }
 
     .games-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .social-grid {
@@ -1623,168 +1694,554 @@ footer {
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 700px) {
 
+    body {
+        font-size: 15px;
+    }
+
+
+    /* SYSTEM BAR */
+
     .system-bar {
-        padding: 0 12px;
-        font-size: 7px;
+        height: 27px;
+
+        padding:
+            0 12px;
+
+        font-size: 6px;
+
+        letter-spacing: 1px;
     }
 
     .system-bar div:nth-child(3) {
         display: none;
     }
 
+
+    /* NAVBAR */
+
     .navbar {
-        padding: 0 5%;
+        top: 27px;
+
+        height: 65px;
+
+        padding:
+            0 18px;
+    }
+
+    .logo {
+        font-size: 12px;
+
+        letter-spacing: 1px;
+    }
+
+    .menu-button {
+        display: flex;
     }
 
     nav {
         position: absolute;
 
-        top: 75px;
-        left: 0;
-        right: 0;
+        top: 65px;
+
+        left: 10px;
+        right: 10px;
 
         display: none;
+
         flex-direction: column;
 
-        padding: 25px;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px;
 
         background:
-            rgba(3,3,5,0.96);
+            rgba(3,3,5,0.98);
 
-        border-bottom:
-            1px solid rgba(77,217,255,0.15);
+        border:
+            1px solid rgba(77,217,255,0.2);
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,0.6);
+
+        backdrop-filter: blur(20px);
     }
 
     nav.open {
         display: flex;
     }
 
-    .menu-button {
+    .nav-link {
         display: block;
+
+        padding: 16px;
+
+        font-size: 9px;
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.05);
     }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+
+    /* GENERAL */
+
+    .section {
+        width: 92%;
+
+        padding:
+            80px 0;
+    }
+
+    .section-heading {
+        gap: 12px;
+
+        margin-bottom: 35px;
+    }
+
+    .section-number {
+        font-size: 9px;
+
+        padding:
+            7px 9px;
+    }
+
+    .section-heading span {
+        font-size: 7px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* HERO */
 
     .hero {
-        padding-top: 130px;
-    }
+        width: 92%;
 
-    .hero h1 {
-        font-size: 55px;
-        letter-spacing: -3px;
-    }
+        min-height: auto;
 
-    .hero-description {
-        font-size: 16px;
-    }
+        padding-top: 135px;
 
-    .hero-stats {
+        padding-bottom: 80px;
+
         gap: 25px;
     }
 
+    .hero-tag {
+        font-size: 7px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+        margin-top: 20px;
+
+        font-size:
+            clamp(38px, 12vw, 60px);
+
+        line-height: 0.95;
+
+        letter-spacing:
+            -2px;
+    }
+
+    .hero-description {
+        margin-top: 22px;
+
+        font-size: 15px;
+
+        line-height: 1.55;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        width: 100%;
+
+        margin-top: 28px;
+    }
+
+    .cyber-button {
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: 52px;
+
+        padding:
+            15px 17px;
+
+        font-size: 8px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+
+        margin-top: 35px;
+    }
+
+    .hero-stats strong {
+        font-size: 18px;
+    }
+
+    .hero-stats span {
+        font-size: 6px;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* HERO IMAGE */
+
     .hero-visual {
-        min-height: 450px;
+        min-height: 390px;
+
+        width: 100%;
+
+        transform: none !important;
     }
 
     .profile-frame {
-        width: 280px;
-        height: 360px;
+        width:
+            min(275px, 72vw);
+
+        height:
+            min(355px, 92vw);
     }
 
     .orbit-one {
-        width: 350px;
-        height: 180px;
+        width: 340px;
+        height: 165px;
     }
 
     .orbit-two {
-        width: 320px;
-        height: 160px;
+        width: 300px;
+        height: 145px;
     }
 
     .orbit-three {
-        width: 400px;
-        height: 200px;
+        width: 380px;
+        height: 185px;
     }
 
-    .section {
-        padding: 90px 0;
+    .visual-label {
+        font-size: 6px;
+
+        padding:
+            6px 8px;
+    }
+
+    .label-one {
+        top: 5%;
+        right: 2%;
+    }
+
+    .label-two {
+        bottom: 8%;
+        left: 2%;
+    }
+
+    .label-three {
+        top: 43%;
+        right: -2px;
+    }
+
+
+    /* ABOUT */
+
+    .about-grid {
+        gap: 15px;
+    }
+
+    .glass-card {
+        padding: 22px;
+    }
+
+    .card-top {
+        margin-bottom: 22px;
+
+        font-size: 6px;
+    }
+
+    .about-main h3 {
+        font-size: 25px;
+    }
+
+    .about-main p {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* GAMES */
+
+    .games-section {
+        width: 92%;
     }
 
     .games-grid {
         grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .game-card {
+        width: 100%;
     }
 
     .game-image {
-        height: 240px;
+        height:
+            min(60vw, 260px);
     }
 
-    .youtube-panel {
-        padding: 35px;
+    .game-info {
+        padding: 20px;
+    }
 
-        min-height: 400px;
+    .game-info h3 {
+        font-size: 21px;
+    }
+
+    .game-info p {
+        font-size: 14px;
+    }
+
+    .game-footer {
+        margin-top: 18px;
+    }
+
+
+    /* FUTURE GAMES */
+
+    .future-games {
+        align-items: flex-start;
+
+        gap: 15px;
+
+        padding: 18px;
+    }
+
+    .future-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 23px;
+    }
+
+    .future-games span {
+        font-size: 6px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .future-games h3 {
+        font-size: 14px;
+
+        line-height: 1.4;
+    }
+
+    .future-games h3 strong {
+        display: block;
+
+        margin-left: 0;
+
+        margin-top: 2px;
+    }
+
+
+    /* YOUTUBE */
+
+    .youtube-panel {
+        min-height: 390px;
+
+        padding: 30px 22px;
+
+        align-items: flex-start;
+    }
+
+    .youtube-tag {
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
+    .youtube-content h3 {
+        margin-top: 15px;
+
+        font-size:
+            clamp(29px, 9vw, 48px);
+
+        line-height: 1;
+    }
+
+    .youtube-content p {
+        font-size: 15px;
+
+        max-width: 240px;
+    }
+
+    .youtube-content .cyber-button {
+        margin-top: 25px;
+
+        width: auto;
+
+        min-width: 170px;
     }
 
     .youtube-symbol {
         position: absolute;
 
-        right: 20px;
-        bottom: 20px;
+        right: 15px;
+        bottom: 10px;
 
         font-size: 80px;
     }
 
-    .future-games {
-        align-items: flex-start;
+
+    /* SOCIAL */
+
+    .social-grid {
+        gap: 12px;
     }
 
-    .future-games h3 strong {
-        display: block;
-        margin-left: 0;
+    .social-card {
+        gap: 12px;
+
+        padding: 17px;
+    }
+
+    .social-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 20px;
+    }
+
+    .social-card span {
+        font-size: 6px;
+
+        letter-spacing: 1px;
+    }
+
+    .social-card h3 {
+        font-size: 16px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+        width: 92%;
+
+        padding-bottom: 30px;
     }
 
     .footer-content {
         flex-direction: column;
 
-        gap: 10px;
+        gap: 9px;
+
+        font-size: 6px;
+
+        line-height: 1.5;
     }
 }
 
 
-@media (max-width: 450px) {
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
 
     .logo {
-        font-size: 13px;
+        font-size: 10px;
     }
 
     .hero h1 {
-        font-size: 44px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .cyber-button {
-        width: 100%;
+        font-size: 36px;
     }
 
     .hero-stats {
-        gap: 18px;
+        gap: 13px;
     }
 
     .hero-stats strong {
-        font-size: 20px;
+        font-size: 16px;
     }
 
-    .section-heading {
-        gap: 12px;
+    .profile-frame {
+        width: 245px;
+        height: 320px;
     }
 
-    .section-heading h2 {
-        font-size: 30px;
+    .orbit-one {
+        width: 290px;
+        height: 140px;
     }
 
-    .glass-card {
-        padding: 25px;
+    .orbit-two {
+        width: 260px;
+        height: 125px;
+    }
+
+    .orbit-three {
+        width: 320px;
+        height: 155px;
+    }
+
+    .game-image {
+        height: 210px;
+    }
+
+    .youtube-panel {
+        min-height: 360px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+    .game-card:hover {
+        transform: none;
+
+        box-shadow: none;
+    }
+
+    .game-card:hover .game-image img {
+        transform: none;
+    }
+
+    .cyber-button:hover {
+        transform: none;
+    }
+
+    .social-card:hover {
+        transform: none;
     }
 }

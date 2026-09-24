@@ -1,6 +1,6 @@
 /* =========================================================
    SWORDGAMER959
-   WEBSITE JAVASCRIPT
+   MOBILE + DESKTOP JAVASCRIPT
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,50 +9,74 @@ document.addEventListener("DOMContentLoaded", () => {
        LOADER
     ====================================================== */
 
-    const loader = document.getElementById("loader");
-    const loaderBar = document.getElementById("loaderBar");
-    const loaderPercent = document.getElementById("loaderPercent");
+    const loader =
+        document.getElementById("loader");
+
+    const loaderBar =
+        document.getElementById("loaderBar");
+
+    const loaderPercent =
+        document.getElementById("loaderPercent");
 
     let progress = 0;
 
-    const loading = setInterval(() => {
+    const loading =
+        setInterval(() => {
 
-        progress += Math.floor(Math.random() * 5) + 1;
+            progress +=
+                Math.floor(Math.random() * 5) + 1;
 
-        if (progress >= 100) {
-            progress = 100;
+            if (progress >= 100) {
 
-            clearInterval(loading);
+                progress = 100;
 
-            setTimeout(() => {
-                loader.classList.add("hide");
-            }, 500);
-        }
+                clearInterval(loading);
 
-        loaderBar.style.width = `${progress}%`;
-        loaderPercent.textContent = `${progress}%`;
+                setTimeout(() => {
 
-    }, 60);
+                    loader.classList.add("hide");
+
+                }, 500);
+            }
+
+            if (loaderBar) {
+                loaderBar.style.width =
+                    `${progress}%`;
+            }
+
+            if (loaderPercent) {
+                loaderPercent.textContent =
+                    `${progress}%`;
+            }
+
+        }, 60);
 
 
     /* =====================================================
-       LIVE CLOCK
+       CLOCK
     ====================================================== */
 
-    const clock = document.getElementById("clock");
+    const clock =
+        document.getElementById("clock");
 
     function updateClock() {
 
-        const now = new Date();
+        if (!clock) return;
+
+        const now =
+            new Date();
 
         const hours =
-            String(now.getHours()).padStart(2, "0");
+            String(now.getHours())
+                .padStart(2, "0");
 
         const minutes =
-            String(now.getMinutes()).padStart(2, "0");
+            String(now.getMinutes())
+                .padStart(2, "0");
 
         const seconds =
-            String(now.getSeconds()).padStart(2, "0");
+            String(now.getSeconds())
+                .padStart(2, "0");
 
         clock.textContent =
             `${hours}:${minutes}:${seconds}`;
@@ -73,24 +97,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const navigation =
         document.getElementById("navigation");
 
-    menuButton.addEventListener("click", () => {
+    if (menuButton && navigation) {
 
-        navigation.classList.toggle("open");
+        menuButton.addEventListener(
+            "click",
+            () => {
 
-    });
+                navigation.classList.toggle("open");
+
+            }
+        );
+
+    }
 
 
     /* =====================================================
-       CLOSE MOBILE MENU
+       CLOSE MOBILE MENU AFTER CLICK
     ====================================================== */
 
-    document.querySelectorAll(".nav-link").forEach(link => {
+    const navLinks =
+        document.querySelectorAll(".nav-link");
 
-        link.addEventListener("click", () => {
+    navLinks.forEach(link => {
 
-            navigation.classList.remove("open");
+        link.addEventListener(
+            "click",
+            () => {
 
-        });
+                if (navigation) {
+                    navigation.classList.remove("open");
+                }
+
+            }
+        );
 
     });
 
@@ -102,42 +141,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections =
         document.querySelectorAll("section[id]");
 
-    const navLinks =
-        document.querySelectorAll(".nav-link");
-
     const observer =
         new IntersectionObserver(
             entries => {
 
                 entries.forEach(entry => {
 
-                    if (entry.isIntersecting) {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-                        navLinks.forEach(link => {
-                            link.classList.remove("active");
-                        });
+                    navLinks.forEach(link => {
 
-                        const active =
-                            document.querySelector(
-                                `.nav-link[href="#${entry.target.id}"]`
-                            );
+                        link.classList.remove(
+                            "active"
+                        );
 
-                        if (active) {
-                            active.classList.add("active");
-                        }
+                    });
 
+                    const active =
+                        document.querySelector(
+                            `.nav-link[href="#${entry.target.id}"]`
+                        );
+
+                    if (active) {
+                        active.classList.add(
+                            "active"
+                        );
                     }
 
                 });
 
             },
             {
-                threshold: 0.35
+                threshold: 0.25
             }
         );
 
     sections.forEach(section => {
+
         observer.observe(section);
+
     });
 
 
@@ -148,48 +192,145 @@ document.addEventListener("DOMContentLoaded", () => {
     const particles =
         document.getElementById("particles");
 
-    for (let i = 0; i < 80; i++) {
+    if (particles) {
 
-        const particle =
-            document.createElement("span");
+        const isMobile =
+            window.innerWidth <= 700;
 
-        particle.className = "particle";
+        const particleCount =
+            isMobile ? 35 : 80;
 
-        particle.style.left =
-            `${Math.random() * 100}%`;
+        for (let i = 0; i < particleCount; i++) {
 
-        particle.style.animationDuration =
-            `${8 + Math.random() * 15}s`;
+            const particle =
+                document.createElement("span");
 
-        particle.style.animationDelay =
-            `${Math.random() * 10}s`;
+            particle.className =
+                "particle";
 
-        particle.style.opacity =
-            `${0.2 + Math.random() * 0.8}`;
+            particle.style.left =
+                `${Math.random() * 100}%`;
 
-        particles.appendChild(particle);
+            particle.style.animationDuration =
+                `${8 + Math.random() * 15}s`;
+
+            particle.style.animationDelay =
+                `${Math.random() * 10}s`;
+
+            particle.style.opacity =
+                `${0.2 + Math.random() * 0.8}`;
+
+            particles.appendChild(
+                particle
+            );
+        }
     }
 
 
     /* =====================================================
-       MOUSE PARALLAX
+       DESKTOP MOUSE PARALLAX ONLY
     ====================================================== */
 
     const heroVisual =
         document.querySelector(".hero-visual");
 
-    if (heroVisual) {
+    const supportsHover =
+        window.matchMedia(
+            "(hover: hover)"
+        ).matches;
 
-        document.addEventListener("mousemove", event => {
+    if (
+        heroVisual &&
+        supportsHover &&
+        window.innerWidth > 700
+    ) {
 
-            const x =
-                (event.clientX / window.innerWidth - 0.5) * 2;
+        document.addEventListener(
+            "mousemove",
+            event => {
 
-            const y =
-                (event.clientY / window.innerHeight - 0.5) * 2;
+                const x =
+                    (
+                        event.clientX /
+                        window.innerWidth -
+                        0.5
+                    ) * 2;
 
-            heroVisual.style.transform =
-                `translate(${x * 8}px, ${y * 8}px)`;
+                const y =
+                    (
+                        event.clientY /
+                        window.innerHeight -
+                        0.5
+                    ) * 2;
+
+                heroVisual.style.transform =
+                    `translate(
+                        ${x * 8}px,
+                        ${y * 8}px
+                    )`;
+            }
+        );
+    }
+
+
+    /* =====================================================
+       GAME CARD 3D EFFECT
+       DESKTOP ONLY
+    ====================================================== */
+
+    const gameCards =
+        document.querySelectorAll(
+            ".game-card"
+        );
+
+    if (supportsHover && window.innerWidth > 700) {
+
+        gameCards.forEach(card => {
+
+            card.addEventListener(
+                "mousemove",
+                event => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+                    const rotateX =
+                        (
+                            (y / rect.height) -
+                            0.5
+                        ) * -4;
+
+                    const rotateY =
+                        (
+                            (x / rect.width) -
+                            0.5
+                        ) * 4;
+
+                    card.style.transform =
+                        `translateY(-10px)
+                         rotateX(${rotateX}deg)
+                         rotateY(${rotateY}deg)`;
+
+                }
+            );
+
+            card.addEventListener(
+                "mouseleave",
+                () => {
+
+                    card.style.transform =
+                        "";
+
+                }
+            );
 
         });
 
@@ -205,65 +346,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     images.forEach(image => {
 
-        image.addEventListener("error", () => {
+        image.addEventListener(
+            "error",
+            () => {
 
-            console.warn(
-                "Image could not be loaded:",
-                image.src
-            );
+                console.warn(
+                    "Image could not be loaded:",
+                    image.src
+                );
 
-        });
-
-        image.addEventListener("load", () => {
-
-            console.log(
-                "Image loaded:",
-                image.src
-            );
-
-        });
-
-    });
-
-
-    /* =====================================================
-       GAME CARD EFFECT
-    ====================================================== */
-
-    const gameCards =
-        document.querySelectorAll(".game-card");
-
-    gameCards.forEach(card => {
-
-        card.addEventListener("mousemove", event => {
-
-            const rect =
-                card.getBoundingClientRect();
-
-            const x =
-                event.clientX - rect.left;
-
-            const y =
-                event.clientY - rect.top;
-
-            const rotateX =
-                ((y / rect.height) - 0.5) * -4;
-
-            const rotateY =
-                ((x / rect.width) - 0.5) * 4;
-
-            card.style.transform =
-                `translateY(-10px)
-                 rotateX(${rotateX}deg)
-                 rotateY(${rotateY}deg)`;
-
-        });
-
-        card.addEventListener("mouseleave", () => {
-
-            card.style.transform = "";
-
-        });
+            }
+        );
 
     });
 
@@ -278,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     console.log(
-        "%c SYSTEM ONLINE ",
+        "%c MOBILE SYSTEM READY ",
         "color:#39ff88;font-weight:bold;"
     );
 
